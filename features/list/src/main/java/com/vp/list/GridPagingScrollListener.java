@@ -1,5 +1,7 @@
 package com.vp.list;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,6 +26,7 @@ public class GridPagingScrollListener extends RecyclerView.OnScrollListener {
         super.onScrolled(recyclerView, dx, dy);
 
         if (shouldLoadNextPage()) {
+            Toast.makeText(recyclerView.getContext(), "DONE!", Toast.LENGTH_LONG).show();
             loadMoreItemsListener.loadMoreItems(getNextPageNumber());
         }
     }

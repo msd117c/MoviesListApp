@@ -1,9 +1,9 @@
 package com.vp.list.viewmodel;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.annotation.NonNull;
 
 import com.vp.list.model.ListItem;
 import com.vp.list.model.SearchResponse;
@@ -24,6 +24,7 @@ public class ListViewModel extends ViewModel {
 
     private String currentTitle = "";
     private List<ListItem> aggregatedItems = new ArrayList<>();
+    private int currentTotalItems = 0;
 
     @Inject
     ListViewModel(@NonNull SearchService searchService) {
@@ -40,17 +41,26 @@ public class ListViewModel extends ViewModel {
             aggregatedItems.clear();
             currentTitle = title;
             liveData.setValue(SearchResult.inProgress());
+        } else if (page > 1 && aggregatedItems.get(aggregatedItems.size() - 1) != null) {
+            aggregatedItems.add(null);
+            liveData.setValue(SearchResult.success(aggregatedItems, currentTotalItems));
         }
+
         searchService.search(title, page).enqueue(new Callback<SearchResponse>() {
             @Override
             public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
 
                 SearchResponse result = response.body();
 
+                if (page > 1) {
+                    aggregatedItems.remove(aggregatedItems.size() - 1);
+                }
+
                 if (result != null) {
                     aggregatedItems.addAll(result.getSearch());
                     // Task 1: Set the state when the process is successful (result != null)
                     liveData.setValue(SearchResult.success(aggregatedItems, result.getTotalResults()));
+                    currentTotalItems = result.getTotalResults();
                 } else {
                     // Task 1: Set the state error when the process results in error (result == null)
                     liveData.setValue(SearchResult.error());
