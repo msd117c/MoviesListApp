@@ -49,6 +49,11 @@ public class ListViewModel extends ViewModel {
 
                 if (result != null) {
                     aggregatedItems.addAll(result.getSearch());
+                    // Task 1: Set the state when the process is successful (result != null)
+                    liveData.setValue(SearchResult.success(aggregatedItems, result.getTotalResults()));
+                } else {
+                    // Task 1: Set the state error when the process results in error (result == null)
+                    liveData.setValue(SearchResult.error());
                 }
             }
 

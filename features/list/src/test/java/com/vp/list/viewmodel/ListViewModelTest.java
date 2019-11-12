@@ -3,6 +3,7 @@ package com.vp.list.viewmodel;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.Observer;
 
+import com.vp.list.model.ListItem;
 import com.vp.list.model.SearchResponse;
 import com.vp.list.service.SearchService;
 
@@ -10,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.mock.Calls;
 
@@ -52,6 +55,10 @@ public class ListViewModelTest {
 
         //then
         verify(mockObserver).onChanged(SearchResult.inProgress());
+
+        // Task 1: Check that state change correctly (as we mock the response, the returned data doesn't make sense)
+        List<ListItem> items = new ArrayList<>();
+        verify(mockObserver).onChanged(SearchResult.success(items, items.size()));
     }
 
 }
