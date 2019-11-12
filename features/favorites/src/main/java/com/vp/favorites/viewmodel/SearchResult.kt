@@ -3,7 +3,7 @@ package com.vp.favorites.viewmodel
 import com.vp.favorites.model.ListItem
 import java.util.Objects
 
-class SearchResult private constructor(val items: MutableList<ListItem>, val totalResult: Int, val listState: ListState) {
+class SearchResult private constructor(val items: List<ListItem>, val totalResult: Int, val listState: ListState) {
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
@@ -24,7 +24,7 @@ class SearchResult private constructor(val items: MutableList<ListItem>, val tot
             return SearchResult(mutableListOf(), 0, ListState.ERROR)
         }
 
-        fun success(items: MutableList<ListItem>, totalResult: Int): SearchResult {
+        fun success(items: List<ListItem>, totalResult: Int): SearchResult {
             return SearchResult(items, totalResult, ListState.LOADED)
         }
 

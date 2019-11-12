@@ -7,6 +7,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FavoriteActivityModule {
 
-    @ContributesAndroidInjector(modules = [ListFragmentModule::class, ListNetworkModule::class, ListViewModelsModule::class])
+    @ContributesAndroidInjector(modules = [FavoriteFragmentModule::class, FavoriteDatabaseModule::class, FavoriteViewModelsModule::class])
     abstract fun bindFavoriteActivity(): FavoriteActivity
 }

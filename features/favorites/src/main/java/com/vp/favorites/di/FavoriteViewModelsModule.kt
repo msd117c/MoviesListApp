@@ -4,19 +4,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vp.daggeraddons.DaggerViewModelFactory
 import com.vp.daggeraddons.ViewModelKey
-import com.vp.favorites.viewmodel.ListViewModel
+import com.vp.favorites.viewmodel.FavoriteViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class ListViewModelsModule {
+abstract class FavoriteViewModelsModule {
 
     @Binds
     abstract fun bindDaggerViewModelFactory(daggerViewModelFactory: DaggerViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     @IntoMap
-    @ViewModelKey(ListViewModel::class)
-    abstract fun bindListViewModel(listViewModel: ListViewModel): ViewModel
+    @ViewModelKey(FavoriteViewModel::class)
+    abstract fun bindFavoriteViewModel(favoriteViewModel: FavoriteViewModel): ViewModel
 }

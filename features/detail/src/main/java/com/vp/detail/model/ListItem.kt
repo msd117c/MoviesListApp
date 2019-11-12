@@ -1,4 +1,5 @@
-package com.vp.favorites.model
+package com.vp.detail.model
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

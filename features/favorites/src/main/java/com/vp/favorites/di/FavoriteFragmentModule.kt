@@ -1,12 +1,12 @@
 package com.vp.favorites.di
 
-import com.vp.favorites.ListFragment
+import com.vp.favorites.FavoriteFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ListFragmentModule {
+abstract class FavoriteFragmentModule {
 
     @ContributesAndroidInjector
-    abstract fun bindListFragment(): ListFragment
+    abstract fun bindFavoriteFragment(): FavoriteFragment
 }

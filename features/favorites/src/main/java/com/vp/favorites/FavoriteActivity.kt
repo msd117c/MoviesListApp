@@ -33,7 +33,7 @@ class FavoriteActivity : AppCompatActivity(), HasSupportFragmentInjector {
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.fragmentContainer, ListFragment(), ListFragment.TAG)
+                    .replace(R.id.fragmentContainer, FavoriteFragment(), FavoriteFragment.TAG)
                     .commit()
         } else {
             searchViewExpanded = savedInstanceState.getBoolean(IS_SEARCH_VIEW_ICONIFIED)
@@ -53,7 +53,7 @@ class FavoriteActivity : AppCompatActivity(), HasSupportFragmentInjector {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     query?.let { nonNullQuery ->
-                        val listFragment = supportFragmentManager.findFragmentByTag(ListFragment.TAG) as ListFragment
+                        val listFragment = supportFragmentManager.findFragmentByTag(FavoriteFragment.TAG) as FavoriteFragment
                         listFragment.submitSearchQuery(nonNullQuery)
                     }
                     return true
@@ -63,8 +63,8 @@ class FavoriteActivity : AppCompatActivity(), HasSupportFragmentInjector {
                     return false
                 }
             })
-            query?.let { nonNullQuery ->
-                setQuery(nonNullQuery, false)
+            this@FavoriteActivity.query?.let { nonNullQuery ->
+                setQuery(nonNullQuery, true)
             }
         }
 
