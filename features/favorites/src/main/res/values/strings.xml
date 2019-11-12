@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">favorites</string>
     <string name="activity_label">Favorites</string>
+    <string name="search">Search</string>
+    <string name="data_loading_error">Data loading error</string>
+    <string name="favorites">Favorites</string>
+    <string name="movies">Movies</string>
 </resources>
