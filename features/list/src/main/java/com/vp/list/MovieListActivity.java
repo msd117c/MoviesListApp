@@ -16,6 +16,8 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
+import static com.vp.list.ListFragment.CURRENT_QUERY;
+
 public class MovieListActivity extends AppCompatActivity implements HasSupportFragmentInjector {
     private static final String IS_SEARCH_VIEW_ICONIFIED = "is_search_view_iconified";
 
@@ -23,6 +25,7 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
     DispatchingAndroidInjector<Fragment> dispatchingActivityInjector;
     private SearchView searchView;
     private boolean searchViewExpanded = true;
+    private String query = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
                     .commit();
         } else {
             searchViewExpanded = savedInstanceState.getBoolean(IS_SEARCH_VIEW_ICONIFIED);
+            // Task 3: Retrieve current query
+            query = savedInstanceState.getString(CURRENT_QUERY);
         }
     }
 
@@ -49,6 +54,7 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
         searchView = (SearchView) menuItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         searchView.setIconified(searchViewExpanded);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -63,6 +69,11 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
             }
         });
 
+        // Task 3: Set the query if it isn't null or empty
+        if (query != null && !query.isEmpty()) {
+            searchView.setQuery(query, true);
+        }
+
         return true;
     }
 
@@ -70,6 +81,8 @@ public class MovieListActivity extends AppCompatActivity implements HasSupportFr
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(IS_SEARCH_VIEW_ICONIFIED, searchView.isIconified());
+        // Task 3: Save current query
+        outState.putString(CURRENT_QUERY, searchView.getQuery() != null ? searchView.getQuery().toString() : "");
     }
 
     @Override

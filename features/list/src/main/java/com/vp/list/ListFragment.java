@@ -29,7 +29,8 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class ListFragment extends Fragment implements GridPagingScrollListener.LoadMoreItemsListener, ListAdapter.OnItemClickListener {
     public static final String TAG = "ListFragment";
-    private static final String CURRENT_QUERY = "current_query";
+    // Task 3: Open current query to be accessed from Activity
+    static final String CURRENT_QUERY = "current_query";
 
     @Inject
     ViewModelProvider.Factory factory;
