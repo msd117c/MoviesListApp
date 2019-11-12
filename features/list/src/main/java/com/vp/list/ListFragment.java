@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.vp.list.viewmodel.SearchResult;
@@ -164,6 +165,22 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
 
     @Override
     public void onItemClick(String imdbID) {
-        //TODO handle click events
+        // Task 2: Open movie detail
+        if (imdbID == null || imdbID.isEmpty()) {
+            Toast.makeText(getContext(), "ID is empty or null, please select other movie",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        Intent intent;
+        try {
+            intent = new Intent(getActivity(),
+                    Class.forName("com.vp.detail.DetailActivity"));
+            Uri uri = Uri.parse("app://movies/detail?imdbID=" + imdbID);
+            intent.setData(uri);
+            startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            Toast.makeText(getContext(), "Activity not found", Toast.LENGTH_LONG).show();
+        }
+
     }
 }
