@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ViewAnimator
         android:id="@+id/viewAnimator"
         android:layout_width="match_parent"
@@ -27,6 +32,8 @@
             android:layout_gravity="center"
             android:text="@string/data_loading_error" />
     </ViewAnimator>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

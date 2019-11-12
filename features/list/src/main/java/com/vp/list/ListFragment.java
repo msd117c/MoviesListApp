@@ -12,6 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,8 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private TextView errorTextView;
+    // Task 4: Add SwipeRefreshLayout variable
+    private SwipeRefreshLayout swipeRefreshLayout;
     private String currentQuery = "Interview";
 
     @Override
@@ -64,6 +68,8 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
         viewAnimator = view.findViewById(R.id.viewAnimator);
         progressBar = view.findViewById(R.id.progressBar);
         errorTextView = view.findViewById(R.id.errorText);
+        // Task 4: Set the swipe variable view
+        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
 
         if (savedInstanceState != null) {
             currentQuery = savedInstanceState.getString(CURRENT_QUERY);
@@ -105,6 +111,12 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
         gridPagingScrollListener = new GridPagingScrollListener(layoutManager);
         gridPagingScrollListener.setLoadMoreItemsListener(this);
         recyclerView.addOnScrollListener(gridPagingScrollListener);
+
+        // Task 4: Add swipe refresh listener and set color accordingly to app theme
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            listViewModel.searchMoviesByTitle(currentQuery, 1);
+        });
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
     }
 
     private void showProgressBar() {
@@ -112,6 +124,8 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
     }
 
     private void showList() {
+        // Task 4: Set refreshing to false to hide swipeRefreshLayout's progressBar
+        swipeRefreshLayout.setRefreshing(false);
         viewAnimator.setDisplayedChild(viewAnimator.indexOfChild(recyclerView));
     }
 
