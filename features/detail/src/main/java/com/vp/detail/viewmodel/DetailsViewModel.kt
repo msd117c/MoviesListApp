@@ -34,13 +34,13 @@ class DetailsViewModel @Inject constructor(private val detailService: DetailServ
 
     fun favorite(): LiveData<Boolean> = favoriteState
 
-    fun fetchDetails() {
+    fun fetchDetails(movieId: String) {
         loadingState.value = LoadingState.IN_PROGRESS
-        detailService.getMovie(DetailActivity.queryProvider.getMovieId()).enqueue(object : Callback, retrofit2.Callback<MovieDetail> {
+        detailService.getMovie(movieId).enqueue(object : Callback, retrofit2.Callback<MovieDetail> {
             override fun onResponse(call: Call<MovieDetail>?, response: Response<MovieDetail>?) {
                 details.postValue(response?.body())
 
-                item = ListItem(id = 0, imdbID = DetailActivity.queryProvider.getMovieId())
+                item = ListItem(id = 0, imdbID = movieId)
 
                 response?.body()?.let { detail ->
                     title.postValue(detail.title)
