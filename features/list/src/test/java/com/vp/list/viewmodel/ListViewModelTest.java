@@ -54,11 +54,11 @@ public class ListViewModelTest {
         listViewModel.searchMoviesByTitle("title", 1);
 
         //then
-        verify(mockObserver).onChanged(SearchResult.inProgress());
+        verify(mockObserver).onChanged(SearchResult.Companion.inProgress());
 
         // Task 1: Check that state change correctly (as we mock the response, the returned data doesn't make sense)
         List<ListItem> items = new ArrayList<>();
-        verify(mockObserver).onChanged(SearchResult.success(items, items.size()));
+        verify(mockObserver).onChanged(SearchResult.Companion.success(items, items.size()));
     }
 
 }
