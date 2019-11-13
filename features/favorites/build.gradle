@@ -52,8 +52,6 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
     implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
 
-    //api
-    api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
     implementation "com.google.code.gson:gson:$rootProject.gson"
 
     //room
