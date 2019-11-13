@@ -60,6 +60,7 @@ dependencies {
     testImplementation "org.assertj:assertj-core:3.11.1"
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:2.21.0"
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
     testImplementation "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
     testImplementation 'androidx.arch.core:core-testing:2.0.0'
     androidTestImplementation 'androidx.test:runner:1.1.1'
