@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.vp.list.model.ListItem
 import com.vp.list.model.SearchResponse
 import com.vp.list.service.SearchService
+import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyInt
@@ -35,6 +36,7 @@ class ListViewModelTest {
 
         //then
         verify<Observer<SearchResult>>(mockObserver).onChanged(SearchResult.error())
+        Assert.assertEquals(listViewModel.observeMovies().value!!.listState, ListState.ERROR)
     }
 
     @Test
