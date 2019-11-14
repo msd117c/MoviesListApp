@@ -133,6 +133,11 @@ class FavoriteFragment : Fragment(), ListAdapter.OnItemClickListener {
         if (searchResult.totalResult <= listAdapter.itemCount) {
             gridPagingScrollListener?.markLastPage(true)
         }
+
+        // Task-5: Add empty check to show feedback to user
+        if (tempList.isEmpty()) {
+            Toast.makeText(context, "Do you not like any movie? Try adding one to favorites!", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
