@@ -3,13 +3,15 @@ package com.vp.list
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class GridPagingScrollListener internal constructor(private val layoutManager: GridLayoutManager) : RecyclerView.OnScrollListener() {
+class GridPagingScrollListener internal constructor(private val layoutManager: GridLayoutManager)
+    : RecyclerView.OnScrollListener() {
     private var loadMoreItemsListener: LoadMoreItemsListener = EMPTY_LISTENER
     private var isLastPage = false
     private var isLoading = false
 
     private val isNotFirstPage: Boolean
-        get() = layoutManager.findFirstVisibleItemPosition() >= 0 && layoutManager.itemCount >= PAGE_SIZE
+        get() = layoutManager.findFirstVisibleItemPosition() >= 0 &&
+                layoutManager.itemCount >= PAGE_SIZE
 
     private val isNotLoadingInProgress: Boolean
         get() = !isLoading
@@ -30,7 +32,8 @@ class GridPagingScrollListener internal constructor(private val layoutManager: G
     }
 
     private fun userScrollsToNextPage(): Boolean {
-        return layoutManager.childCount + layoutManager.findFirstVisibleItemPosition() >= layoutManager.itemCount
+        return layoutManager.childCount + layoutManager.findFirstVisibleItemPosition() >=
+                layoutManager.itemCount
     }
 
     private fun hasNextPage(): Boolean {

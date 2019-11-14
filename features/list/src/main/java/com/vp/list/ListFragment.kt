@@ -26,7 +26,8 @@ import com.vp.list.viewmodel.SearchResult
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener, ListAdapter.OnItemClickListener {
+class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
+        ListAdapter.OnItemClickListener {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -48,7 +49,8 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
         listViewModel = ViewModelProviders.of(this, factory).get(ListViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
@@ -67,7 +69,7 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
 
         initBottomNavigation(view)
         initList()
-        listViewModel.observeMovies().observe(this, Observer{ searchResult ->
+        listViewModel.observeMovies().observe(this, Observer { searchResult ->
             if (searchResult != null) {
                 handleResult(listAdapter!!, searchResult)
             }
@@ -95,7 +97,8 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
             adapter = listAdapter
             setHasFixedSize(true)
             val layoutManager = GridLayoutManager(context,
-                    if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3)
+                    if (resources.configuration.orientation ==
+                            Configuration.ORIENTATION_PORTRAIT) 2 else 3)
             this.layoutManager = layoutManager
 
             // Pagination
@@ -107,7 +110,9 @@ class ListFragment : Fragment(), GridPagingScrollListener.LoadMoreItemsListener,
         }
 
         // Task 4: Add swipe refresh listener and set color accordingly to app theme
-        swipeRefreshLayout?.setOnRefreshListener { listViewModel.searchMoviesByTitle(currentQuery, 1) }
+        swipeRefreshLayout?.setOnRefreshListener {
+            listViewModel.searchMoviesByTitle(currentQuery, 1)
+        }
         swipeRefreshLayout?.setColorSchemeResources(R.color.colorAccent)
     }
 

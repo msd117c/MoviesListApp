@@ -3,7 +3,8 @@ package com.vp.favorites
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class GridPagingScrollListener(private val layoutManager: GridLayoutManager) : RecyclerView.OnScrollListener() {
+class GridPagingScrollListener(private val layoutManager: GridLayoutManager)
+    : RecyclerView.OnScrollListener() {
     private var loadMoreItemsListener: LoadMoreItemsListener = EMPTY_LISTENER
     private var isLastPage = false
     private var isLoading = false
@@ -31,7 +32,8 @@ class GridPagingScrollListener(private val layoutManager: GridLayoutManager) : R
     }
 
     private fun userScrollsToNextPage(): Boolean {
-        return layoutManager.childCount + layoutManager.findFirstVisibleItemPosition() >= layoutManager.itemCount
+        return layoutManager.childCount + layoutManager.findFirstVisibleItemPosition() >=
+                layoutManager.itemCount
     }
 
     private fun hasNextPage(): Boolean {

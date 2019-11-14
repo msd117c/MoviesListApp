@@ -19,7 +19,8 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     private var onItemClickListener: OnItemClickListener = EMPTY_ON_ITEM_CLICK_LISTENER
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        return ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false))
+        return ListViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_list, parent, false))
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
@@ -30,7 +31,8 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
             Glide
                     .with(holder.image)
                     .load(listItem.poster)
-                    .apply(RequestOptions().override((300 * density).toInt(), (600 * density).toInt()))
+                    .apply(RequestOptions().override((300 * density).toInt(),
+                            (600 * density).toInt()))
                     .into(holder.image)
         } else {
             holder.image.setImageResource(R.drawable.placeholder)
@@ -58,7 +60,8 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
         this.onItemClickListener = EMPTY_ON_ITEM_CLICK_LISTENER
     }
 
-    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+            View.OnClickListener {
         var image: ImageView
 
         init {

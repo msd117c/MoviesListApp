@@ -55,7 +55,8 @@ class MovieListActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 maxWidth = Integer.MAX_VALUE
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String): Boolean {
-                        val listFragment = supportFragmentManager.findFragmentByTag(ListFragment.TAG) as ListFragment
+                        val listFragment = supportFragmentManager
+                                .findFragmentByTag(ListFragment.TAG) as ListFragment
                         listFragment.submitSearchQuery(query)
                         return true
                     }
@@ -67,7 +68,8 @@ class MovieListActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 setOnCloseListener {
                     // Restore the default search if search view is closed without query
                     if (query.isEmpty()) {
-                        val listFragment = supportFragmentManager.findFragmentByTag(ListFragment.TAG) as ListFragment
+                        val listFragment = supportFragmentManager
+                                .findFragmentByTag(ListFragment.TAG) as ListFragment
                         listFragment.submitSearchQuery("Interview")
                     }
                     return@setOnCloseListener false

@@ -53,7 +53,8 @@ class FavoriteActivity : AppCompatActivity(), HasSupportFragmentInjector {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     query?.let { nonNullQuery ->
-                        val listFragment = supportFragmentManager.findFragmentByTag(FavoriteFragment.TAG) as FavoriteFragment
+                        val listFragment = supportFragmentManager
+                                .findFragmentByTag(FavoriteFragment.TAG) as FavoriteFragment
                         listFragment.submitSearchQuery(nonNullQuery)
                     }
                     return true

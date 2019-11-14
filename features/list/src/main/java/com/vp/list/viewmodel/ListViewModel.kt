@@ -35,7 +35,8 @@ internal constructor(private val searchService: SearchService) : ViewModel() {
             }
 
             searchService.search(nonNullTitle, page).enqueue(object : Callback<SearchResponse> {
-                override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                override fun onResponse(call: Call<SearchResponse>,
+                                        response: Response<SearchResponse>) {
 
                     val result = response.body()
 
@@ -49,7 +50,8 @@ internal constructor(private val searchService: SearchService) : ViewModel() {
                         liveData.value = SearchResult.success(aggregatedItems, result.totalResults)
                         currentTotalItems = result.totalResults
                     } else {
-                        // Task 1: Set the state error when the process results in error (result == null)
+                        // Task 1: Set the state error when the process results
+                        // in error (result == null)
                         liveData.value = SearchResult.error()
                     }
                 }

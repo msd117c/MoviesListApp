@@ -43,10 +43,12 @@ class FavoriteFragment : Fragment(), ListAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
-        favoriteViewModel = ViewModelProviders.of(this, factory).get<FavoriteViewModel>(FavoriteViewModel::class.java)
+        favoriteViewModel = ViewModelProviders.of(this, factory)
+                .get<FavoriteViewModel>(FavoriteViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
@@ -83,7 +85,8 @@ class FavoriteFragment : Fragment(), ListAdapter.OnItemClickListener {
         recyclerView?.adapter = listAdapter
         recyclerView?.setHasFixedSize(true)
         val layoutManager = GridLayoutManager(context,
-                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3)
+                if (resources.configuration.orientation ==
+                        Configuration.ORIENTATION_PORTRAIT) 2 else 3)
         recyclerView?.layoutManager = layoutManager
 
         gridPagingScrollListener = GridPagingScrollListener(layoutManager)

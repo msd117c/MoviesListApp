@@ -1,6 +1,8 @@
 package com.vp.list.model
 
-class SearchResult private constructor(val items: List<ListItem>, private val hasResponse: Boolean, val totalResult: Int) {
+class SearchResult private constructor(val items: List<ListItem>,
+                                       private val hasResponse: Boolean,
+                                       val totalResult: Int) {
 
     fun hasResponse(): Boolean {
         return hasResponse

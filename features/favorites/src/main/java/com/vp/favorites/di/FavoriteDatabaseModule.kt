@@ -8,5 +8,6 @@ import dagger.Provides
 @Module
 class FavoriteDatabaseModule {
     @Provides
-    internal fun providesRoomDatabase(application: Application): FavoritesRoomDatabase = FavoritesRoomDatabase.getDatabase(application)
+    internal fun providesRoomDatabase(application: Application): FavoritesRoomDatabase =
+            FavoritesRoomDatabase.getDatabase(application)
 }

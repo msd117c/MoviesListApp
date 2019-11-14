@@ -3,7 +3,9 @@ package com.vp.favorites.viewmodel
 import com.vp.favorites.model.ListItem
 import java.util.Objects
 
-class SearchResult private constructor(val items: List<ListItem>, val totalResult: Int, val listState: ListState) {
+class SearchResult private constructor(val items: List<ListItem>,
+                                       val totalResult: Int,
+                                       val listState: ListState) {
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true

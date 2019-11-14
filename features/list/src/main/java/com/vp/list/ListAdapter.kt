@@ -16,9 +16,11 @@ class ListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM) {
-            ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false))
+            ListViewHolder(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_list, parent, false))
         } else {
-            LoadingViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.loading_item_list, parent, false))
+            LoadingViewHolder(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.loading_item_list, parent, false))
         }
     }
 
@@ -65,7 +67,8 @@ class ListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.onItemClickListener = EMPTY_ON_ITEM_CLICK_LISTENER
     }
 
-    internal inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    internal inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+            View.OnClickListener {
         var image: ImageView
 
         init {
